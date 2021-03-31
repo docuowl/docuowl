@@ -1,0 +1,38 @@
+# This is a list of words the indexer ignores, one word per line
+# When you edit this file be sure to use UNIX line endings (single newline)
+# No need to include words shorter than 3 chars - these are ignored anyway
+# This list is based upon the ones found at https://www.ranks.nl/stopwords/
+aan
+als
+bij
+dan
+dat
+die
+dit
+een
+had
+heb
+hem
+het
+hij
+hoe
+hun
+kan
+men
+met
+mij
+nog
+ons
+ook
+tot
+uit
+van
+was
+wat
+wel
+wij
+www
+zal
+zei
+zij
+zou

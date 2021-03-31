@@ -1,0 +1,29 @@
+# Това е списък с думи за игнориране при индексиране, с една дума на ред
+# Когато редактирате този файл, не забравяйте да използвате UNIX символ за нов ред
+# Не е нужно да включвате думи по-кратки от 3 символа - те биват игнорирани така или иначе
+# Списъкът се основава на думи от https://www.ranks.nl/stopwords/
+about
+are
+and
+you
+your
+them
+their
+com
+for
+from
+into
+how
+that
+the
+this
+was
+what
+when
+where
+who
+will
+with
+und
+the
+www

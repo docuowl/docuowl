@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {{ if not .NoFTS }}
+    <meta name="owl-fts-index" content="{{.Index}}" />
+    <script type="module">
+        {{ .FTSSource }}
+    </script>
+    {{ end }}
+    <meta charset="utf-8" />
+    <meta name="generator" content="Docuowl (https://github.com/docuowl/docuowl)" />
+    <style>
+        {{ .CSS }}
+    </style>
+    <title>Docuowl</title>
+</head>
+<body>

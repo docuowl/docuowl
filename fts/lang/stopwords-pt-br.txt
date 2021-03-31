@@ -1,0 +1,55 @@
+# Essa é uma lista de palavras que o indexador ignora, uma palavra por linha
+# Ao editar esse arquivo, certifique-se de usar terminações de linha UNIX (newline simples)
+# Não há necessidade de incluir palavras menores que 3 caracteres - elas já são ignoradas por padrão
+# Essa lista é baseada na encontrada em https://www.ranks.nl/stopwords/portugese.html
+acerca
+algum
+alguma
+algumas
+alguns
+ambos
+antes
+após
+aquela
+aquelas
+aquele
+aqueles
+até
+bem
+bom
+cada
+com
+como
+das
+desde
+dos
+enquanto
+então
+esta
+este
+estas
+estes
+essa
+essas
+esse
+esses
+isso
+isto
+mas
+mesmo
+onde
+para
+pelo
+por
+qual
+quando
+que
+quem
+sem
+somente
+tal
+também
+uma
+umas
+uns
+www

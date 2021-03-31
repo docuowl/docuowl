@@ -1,0 +1,29 @@
+# 这是一个索引器忽略的单词列表，每行一个单词
+# 这个文件需要使用UNIX行结尾（单换行符）
+# 不需要包括短于3字符的词，这些都会被忽略
+# 这个列表是基于此改进的 https://www.ranks.nl/stopwords/
+about
+are
+and
+you
+your
+them
+their
+com
+for
+from
+into
+how
+that
+the
+this
+was
+what
+when
+where
+who
+will
+with
+und
+the
+www

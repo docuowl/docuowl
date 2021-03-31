@@ -1,0 +1,6 @@
+.nova/
+.idea/
+output/
+input/
+.DS_Store
+dist/

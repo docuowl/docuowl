@@ -1,0 +1,39 @@
+# 以下は、インデックス作成時に無視する語句のリストです。一行に一単語ずつ記入してください。
+# このファイルを編集する際は、UNIXで用いられる改行コード（LF）を使用してください。
+# 3文字未満の語句は自動的に無視されるので、リストに加える必要はありません。
+# このリストは次のサイトをもとに作成されています： https://www.ranks.nl/stopwords/
+about
+are
+as
+an
+and
+you
+your
+them
+their
+com
+for
+from
+into
+if
+in
+is
+it
+how
+of
+on
+or
+that
+the
+this
+to
+was
+what
+when
+where
+who
+will
+with
+und
+the
+www

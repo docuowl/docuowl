@@ -1,0 +1,36 @@
+# This is a list of words the indexer ignores, one word per line
+# When you edit this file be sure to use UNIX line endings (single newline)
+# No need to include words shorter than 3 chars - these are ignored anyway
+# This list is based upon the ones found at https://www.ranks.nl/stopwords/
+about
+adalah
+and
+are
+com
+dan
+for
+from
+how
+into
+jika
+kemudian
+lalu
+maka
+that
+the
+their
+them
+this
+und
+untuk
+was
+what
+when
+where
+who
+will
+with
+www
+yang
+you
+your

@@ -977,7 +977,7 @@ func (r *Renderer) CodeBlock(w io.Writer, codeBlock *ast.CodeBlock) {
 	r.CR(w)
 
 	r.Outs(w, `<div class="pre-code-block">`)
-	source := chromaHTML.New(chromaHTML.WithLineNumbers(true))
+	source := chromaHTML.New(chromaHTML.WithLineNumbers(true), chromaHTML.WithClasses(true))
 	var lex chroma.Lexer
 	if codeBlock.Info != nil {
 		lex = lexers.Get(string(codeBlock.Info))
@@ -992,7 +992,7 @@ func (r *Renderer) CodeBlock(w io.Writer, codeBlock *ast.CodeBlock) {
 	if err != nil {
 		panic(err)
 	}
-	err = source.Format(w, styles.Fruity, iterator)
+	err = source.Format(w, styles.Fallback, iterator)
 	if err != nil {
 		panic(err)
 	}

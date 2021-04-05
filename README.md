@@ -4,7 +4,7 @@ Docuowl generates a static single-page documentation from Markdown files
 
 ## Rationale
 As a long-time fan of documentation style made by [Stripe](https://stripe.com/docs/api),
-and Markdown, I decided to use the former to create a pretty documentation generator
+and Markdown, I decided to use the latter to create a pretty documentation generator
 that outputs something like Stripe's. Stripe also generously allowed me to use their
 layout, so here's a big thank you to them! ♥️
 

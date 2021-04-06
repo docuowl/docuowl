@@ -4,12 +4,9 @@ import (
 	_ "embed"
 
 	"github.com/evanw/esbuild/pkg/api"
-	"github.com/tdewolff/minify/v2"
-	"github.com/tdewolff/minify/v2/css"
 )
 
-//go:embed reset.css
-var resetCSS string
+//go:generate go run ../generators/style.go
 
 //go:embed style.css
 var mainCSS string
@@ -33,14 +30,7 @@ func MakeExecutor() string {
 }
 
 func MakeStyles() string {
-	m := minify.New()
-	m.AddFunc("text/css", css.Minify)
-	b, err := m.Bytes("text/css", []byte(resetCSS+mainCSS))
-	if err != nil {
-		// Should not happen.
-		panic(err)
-	}
-	return string(b)
+	return mainCSS
 }
 
 func MakeWASMLoader() []byte {

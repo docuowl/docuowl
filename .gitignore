@@ -4,3 +4,4 @@ output/
 input/
 .DS_Store
 dist/
+static/style.css

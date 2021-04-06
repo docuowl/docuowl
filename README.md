@@ -4,9 +4,9 @@ Docuowl generates a static single-page documentation from Markdown files
 
 ## Rationale
 As a long-time fan of documentation style made by [Stripe](https://stripe.com/docs/api),
-and Markdown, I decided to use the former to create a pretty documentation generator
-that outputs something like Stripe's. Stripe also generously allowed me to use their
-layout, so here's a big thank you to them! ♥️
+and Markdown, I decided to use the former as a base to create a pretty documentation
+generator that outputs something like Stripe's. Stripe also generously allowed me
+to use their layout, so here's a big thank you to them! ♥️
 
 ## Demo
 Looking for a demo? A simple demo is available at [https://docuowl.github.io/demo/](https://docuowl.github.io/demo/)!
@@ -15,10 +15,10 @@ Looking for a demo? A simple demo is available at [https://docuowl.github.io/dem
 </center>
 
 ## Documentation Organization
-Docuowl takes a directory as input. The directory is expected to have one 
-directory for each section or group. Each group may have subsections, which by 
+Docuowl takes a directory as input. The directory is expected to have one
+directory for each section or group. Each group may have subsections, which by
 their turn must also be placed into directories.
-Each **Section** is required to have an `content.md` file, containing the 
+Each **Section** is required to have an `content.md` file, containing the
 Frontmatter for that section, and an optional `sidenotes.md` file, that will be
 rendered to the right of the section. The Frontmatter must contain at least a
 `Title` property, and an optional `ID` property containing a unique slug for that
@@ -94,7 +94,7 @@ format:
 And this is the box's content
 ```
 
-After one `#!`, the box will take any content that follows until one of the 
+After one `#!`, the box will take any content that follows until one of the
 following conditions are met:
 
 1. A horizontal ruler is found (`----`)
@@ -114,7 +114,7 @@ use the following format:
 Docuowl can be invoked in two modes: Compile, and Watch.
 
 ### Compile
-Compilation will output a single `index.html` file to an specified directory, 
+Compilation will output a single `index.html` file to an specified directory,
 taking another directory as input. For instance:
 
 ```bash
@@ -132,7 +132,7 @@ Docuowl v0.1
 Listening on 127.0.0.1:8000
 ```
 
-Then open your browser and point to 127.0.0.1:8000. The page will be reloaded 
+Then open your browser and point to 127.0.0.1:8000. The page will be reloaded
 each time a file changes in the `input` directory.
 
 ## TODO

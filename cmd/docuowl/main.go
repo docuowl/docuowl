@@ -103,7 +103,7 @@ func render(lang, input, output string, noFTS bool) error {
 	if noFTS {
 		return nil
 	}
-	if err = os.WriteFile(output+"/owl_wasm.js", static.MakeWASMLoader(), os.ModePerm); err != nil {
+	if err = os.WriteFile(output+"/owl_wasm.js", static.WASMLoader, os.ModePerm); err != nil {
 		return fmt.Errorf("error writing %s: %s", output+"/owl_wasm.js", err)
 	}
 

@@ -36,7 +36,7 @@ func MakeHead(index string, noFTS bool) string {
 		Index     string
 		FTSSource string
 		NoFTS     bool
-	}{static.MakeStyles(), index, static.MakeExecutor(), noFTS})
+	}{static.CSS, index, static.FTSExecutor, noFTS})
 	if err != nil {
 		panic(err)
 	}
@@ -67,9 +67,11 @@ func MakeSidebar(tree []fs.Entity, version string, noFTS bool) string {
 	}
 	var buf bytes.Buffer
 	err = tmpl.Execute(&buf, struct {
-		TOC, Version string
-		NoFTS        bool
-	}{TOC, version, noFTS})
+		TOC           string
+		Version       string
+		ThemeSelector string
+		NoFTS         bool
+	}{TOC, version, static.ThemeSelector, noFTS})
 	if err != nil {
 		panic(err)
 	}

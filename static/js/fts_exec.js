@@ -46,8 +46,61 @@ const debounce = (n,t,u) => {var e;return function(){var i=this,o=arguments,a=u&
             }
         }
 
+        const findCorrelations = (terms, result) => {
+            const containerText = document
+                .querySelector(`#content-${result.anchor} .content`)
+                .textContent
+                .toLowerCase()
+                .replace(/\n/g, ' ')
+                .replace(/\s+/g, ' ')
+                .trim();
+
+            const allIndexes = terms.map(t => {
+                const idx = containerText.indexOf(t);
+                if (idx === -1) {
+                    return false;
+                }
+                return { start: Math.max(0, idx - 100), end: idx + 100 };
+            }).filter(Boolean);
+
+            if (allIndexes.length === 0) {
+                return null;
+            }
+
+            const filteredIndexes = [];
+
+            for (let idx of allIndexes) {
+                if (filteredIndexes.length >= 2) {
+                    break;
+                }
+                if (filteredIndexes.length === 0) {
+                    filteredIndexes.push(idx);
+                    continue;
+                }
+                if (!filteredIndexes.some(i => i.start <= idx.start && i.end >= idx.end)) {
+                    filteredIndexes.push(idx);
+                }
+            }
+
+            let resultingText = filteredIndexes.map(i => {
+                let txt = containerText.substring(i.start, i.end);
+                if (i.start !== 0) {
+                    txt = '&hellip;' + txt.substring(txt.indexOf(' '));
+                }
+                return txt + '&hellip;';
+            }).join(' ');
+
+            terms.forEach(t => {
+                resultingText = resultingText.replace(t, (x) => {
+                    return `<span class="search-result-match">${x}</span>`;
+                })
+            });
+
+            return resultingText;
+        };
+
         const doSearch = debounce((terms) => {
-            terms = terms.trim();
+            terms = terms.trim().toLowerCase();
             if (terms.length === 0) {
                 return;
             }
@@ -63,10 +116,16 @@ const debounce = (n,t,u) => {var e;return function(){var i=this,o=arguments,a=u&
             }
 
             let idx = 0;
+
+            const allTerms = terms.split(' ').map(i => i.trim()).filter(Boolean);
             const html = searchResults.map(r => {
-                let anchor = document.querySelector(`#anchor-${r.anchor}`);
-                return `<li class="result" data-to="content-${r.anchor}" data-idx="${idx++}">${anchor.textContent}</li>`;
-            }).join('');
+                const correlations = findCorrelations(allTerms, r);
+                if (correlations === null) {
+                    return null;
+                }
+                const anchor = document.querySelector(`#anchor-${r.anchor}`);
+                return `<li class="result" data-to="content-${r.anchor}" data-idx="${idx++}"><div class="search-title">${anchor.textContent}</div><div class="text-matches">${correlations}</div></li>`;
+            }).filter(Boolean).join('');
 
             searchResultList.innerHTML = html;
 
@@ -75,14 +134,18 @@ const debounce = (n,t,u) => {var e;return function(){var i=this,o=arguments,a=u&
                     changeActiveIndex(parseInt(e.target.getAttribute('data-idx'), 10));
                 });
                 el.addEventListener('click', (e) => {
-                    let el = e.target;
+                    let obj = e.target;
+                    while (obj && !obj.classList.contains('result')) {
+                        obj = obj.parentNode;
+                    }
+                    let el = document.querySelector(`#${obj.getAttribute('data-to')}`);
                     el.scrollIntoView({
                         behavior: 'smooth',
                         block: 'start'
                     });
-                    document.location.hash = el.getAttribute('data-to');
+                    document.location.hash = obj.getAttribute('data-to');
                     hideSearch();
-                })
+                });
             }
         }, 300);
 

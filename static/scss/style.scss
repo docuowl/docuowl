@@ -681,6 +681,7 @@ body.showing-search {
     padding: 12px;
     border-radius: 8px;
     box-shadow: 0px 1px 8px rgba(11, 11, 11, .7);
+    width: 500px;
 
     input {
         border: 1px solid #535353;
@@ -689,6 +690,7 @@ body.showing-search {
         border-radius: 3px;
         color: #fff;
         font-size: 25px;
+        width: 100%;
     }
 }
 
@@ -702,9 +704,8 @@ body.showing-search {
 
         &.result {
             font-size: 19px;
-            height: 40px;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             color: var(--search-body-color);
             cursor: pointer;
             padding: 0 15px;
@@ -715,6 +716,25 @@ body.showing-search {
 
             &.active {
                 background: #1a1919;
+            }
+
+            .search-title {
+                padding-top: 12px;
+                font-size: 20px;
+            }
+
+            .text-matches {
+                padding-top: 8px;
+                padding-bottom: 10px;
+                font-size: 14px;
+
+                .search-result-match {
+                    color: black;
+                    background-color: yellow;
+                    border-radius: 3px;
+                    padding: 1px 2px;
+                    border: 1px solid #ecb430;
+                }
             }
         }
     }

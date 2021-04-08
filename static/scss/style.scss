@@ -1,5 +1,7 @@
 @import "reset";
 
+$breakpoint-tablet: 768px;
+
 :root {
     --owl-fontSet--latin: -apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Helvetica Neue","Ubuntu";
     --owl-fontSet--monospace: "Menlo","Consolas";
@@ -30,8 +32,6 @@ html, body {
     font-weight: 400;
     color: #4f566b;
     background-color: var(--owl-backgroundColor);
-    height: 100vh;
-    width: 100vw;
     overflow-x: hidden;
 }
 
@@ -134,6 +134,7 @@ h3, h4, h5, h6 {
             .version {
                 display: flex;
                 align-items: center;
+                color: var(--gray800);
 
                 small {
                     margin-top: 5px;
@@ -149,7 +150,6 @@ h3, h4, h5, h6 {
         padding: 8px;
         display: flex;
         align-items: center;
-        justify-content: space-between;
 
         &:hover {
             background-color: var(--gray100);
@@ -179,6 +179,9 @@ h3, h4, h5, h6 {
                 stroke: var(--search-color);
             }
         }
+    }
+    @media (max-width: $breakpoint-tablet) {
+        display: none;
     }
 }
 
@@ -664,6 +667,94 @@ blockquote {
         }
     }
 }
+
+#sidebar-mobile {
+    position: relative;
+    z-index: 1;
+
+    margin-right: 48px;
+
+
+    .overlay {
+        display: none;
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        background-color: black;
+        opacity: 0.4;
+    }
+
+    .wrapper {
+        display: block;
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+        overflow: scroll;
+    }
+
+    .header {
+        display: none;
+        z-index: 1;
+        position: sticky;
+        width: 100vw;
+        align-items: center;
+        padding: 8px;
+        background-color: var(--owl-backgroundColor);
+        border-bottom: 1px solid var(--gray100);
+    }
+
+    .content {
+        display: none;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        background-color: var(--owl-backgroundColor);
+
+        >ul {
+            >li {
+                padding: 8px 12px;
+            }
+        }
+    }
+
+    .burger-button {
+        color: var(--gray800);
+        font-size: 18px;
+        background: none;
+        border: none;
+
+        &:active {
+            color: yellow;
+        }
+    }
+
+    @media (max-width: $breakpoint-tablet) {
+        .overlay {
+            display: block;
+        }
+
+        .header {
+            display: flex;
+        }
+
+        .open  {
+            display: block;
+            height: 100vh;
+        }
+
+        .version-and-toggle {
+            display: flex;
+            align-items: center;
+            color: var(--gray800);
+            width: 100%;
+            justify-content: space-between;
+            padding: 0 4px;
+        }
+    }
+}
+
 
 body.showing-search {
     #search-container {

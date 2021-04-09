@@ -16,3 +16,6 @@ var FTSExecutor string
 
 //go:embed theme_selector.min.js
 var ThemeSelector string
+
+//go:embed toggle_menu.min.js
+var ToggleMenu string

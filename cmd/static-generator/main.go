@@ -61,6 +61,7 @@ func generateJS() error {
 	}{
 		{from: "fts_exec.js", mangle: false},
 		{from: "theme_selector.js", mangle: true},
+		{from: "toggle_menu.js", mangle: true},
 		{from: "owl_wasm.js", mangle: false},
 	}
 	for _, meta := range funcs {

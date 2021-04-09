@@ -685,13 +685,14 @@ blockquote {
     }
 
     .wrapper {
-        display: block;
+        display: none;
         position: relative;
         z-index: 1;
         width: 100%;
         height: 100%;
         flex-direction: column;
         overflow: scroll;
+        background-color: #ffffff;
     }
 
     .header {
@@ -706,7 +707,6 @@ blockquote {
     }
 
     .content {
-        display: none;
         z-index: 2;
         width: 100%;
         height: 100%;

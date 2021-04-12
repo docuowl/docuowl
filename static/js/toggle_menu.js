@@ -1,13 +1,18 @@
 (() => {
   const button = document.querySelector('.burger-button');
   const menuContent = document.querySelector('#mobile-menu-content');
+  const overlay = document.querySelector('.sidebar-mobile .overlay');
 
   const toggleMenu = () => {
-    if (menuContent.style.display === 'block') {
-      menuContent.style.display = 'none';
+    menuContent.classList.toggle('menu-active');
+
+    if (overlay.style.display === 'block') {
+      overlay.style.display = 'none';
+
       return;
     }
-    menuContent.style.display = 'block';
+
+    overlay.style.display = 'block';
   }
 
   button.addEventListener('click', (e) => {
@@ -15,4 +20,16 @@
       toggleMenu();
     }
   });
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      toggleMenu();
+    }
+  })
+
+  menuContent.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+      toggleMenu();
+    }
+  })
 })();

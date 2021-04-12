@@ -130,16 +130,6 @@ h3, h4, h5, h6 {
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
-
-            .version {
-                display: flex;
-                align-items: center;
-                color: var(--gray800);
-
-                small {
-                    margin-top: 5px;
-                }
-            }
         }
     }
 
@@ -185,6 +175,16 @@ h3, h4, h5, h6 {
     }
 }
 
+.version {
+    display: flex;
+    align-items: center;
+    color: var(--gray800);
+
+    small {
+        margin-top: 5px;
+    }
+}
+
 #content {
     position: absolute;
     top: 0;
@@ -195,7 +195,16 @@ h3, h4, h5, h6 {
     -webkit-overflow-scrolling: touch;
     outline: none !important;
     overflow-x: hidden;
-    overflow-y: scroll
+    overflow-y: scroll;
+
+    #content-introduction {
+        margin-top: 51px;
+    }
+
+    @media (max-width: $breakpoint-tablet) {
+        position: relative;
+        left: 0px;
+    }
 }
 
 h1 {
@@ -223,6 +232,10 @@ section.section {
         padding: 5vw;
         width: 100%;
         justify-content: space-between;
+
+        @media (max-width: $breakpoint-tablet) {
+            flex-direction: column;
+        }
     }
 
     .content {
@@ -240,6 +253,12 @@ section.section {
 
             pre span {
                 margin: 0;
+            }
+        }
+
+        @media (max-width: $breakpoint-tablet) {
+            ol {
+                margin-left: 24px;
             }
         }
     }
@@ -318,7 +337,20 @@ section.section {
                     padding: 12px;
                 }
             }
+
+            @media (max-width: $breakpoint-tablet) {
+                min-width: 100%;
+            }
         }
+
+        @media (max-width: $breakpoint-tablet) {
+            min-width: 100%;
+            padding-top: 0;
+        }
+    }
+
+    @media (max-width: $breakpoint-tablet) {
+        flex-direction: column;
     }
 }
 
@@ -507,7 +539,7 @@ pre {
 
     .content {
         > h5 {
-            margin-top: 8px!important;
+            margin-top: 12px!important;
             border: 1px solid var(--gray100);
             border-radius: 8px 8px 0 0;
             padding-left: 10px;
@@ -668,12 +700,22 @@ blockquote {
     }
 }
 
-#sidebar-mobile {
+.sidebar-mobile {
     position: relative;
     z-index: 1;
 
     margin-right: 48px;
 
+    .header {
+        display: none;
+        z-index: 1;
+        position: fixed;
+        width: 100vw;
+        align-items: center;
+        padding: 8px;
+        background-color: var(--owl-backgroundColor);
+        border-bottom: 1px solid var(--gray100);
+    }
 
     .overlay {
         display: none;
@@ -685,38 +727,40 @@ blockquote {
     }
 
     .wrapper {
-        display: none;
-        position: relative;
+        position: fixed;
+        top: 51px;
+        left: -280px;
         z-index: 1;
-        width: 100%;
-        height: 100%;
+        width: 280px;
+        padding: 12px 0;
         flex-direction: column;
-        overflow: scroll;
-        background-color: #ffffff;
-    }
-
-    .header {
-        display: none;
-        z-index: 1;
-        position: sticky;
-        width: 100vw;
-        align-items: center;
-        padding: 8px;
         background-color: var(--owl-backgroundColor);
-        border-bottom: 1px solid var(--gray100);
-    }
+        transition: left .4s ease-out;
 
-    .content {
-        z-index: 2;
-        width: 100%;
-        height: 100%;
-        background-color: var(--owl-backgroundColor);
+        .content {
+            width: 100%;
+            height: 100%;
+            background-color: var(--owl-backgroundColor);
 
-        >ul {
-            >li {
-                padding: 8px 12px;
+            .toc {
+                margin-top: 0;
+            }
+
+            .toc a {
+                height: 40px;
+                line-height: 20px;
+            }
+
+            .sidebar-group-wrapper a {
+                padding-left: 30px;
             }
         }
+
+    }
+
+    .menu-active {
+        display: block;
+        left: 0
     }
 
     .burger-button {
@@ -726,13 +770,13 @@ blockquote {
         border: none;
 
         &:active {
-            color: yellow;
+            opacity: 0.4;
         }
     }
 
     @media (max-width: $breakpoint-tablet) {
         .overlay {
-            display: block;
+            display: none;
         }
 
         .header {
@@ -754,7 +798,6 @@ blockquote {
         }
     }
 }
-
 
 body.showing-search {
     #search-container {

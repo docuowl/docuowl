@@ -3,17 +3,17 @@
 {{ else }}
 <section class="section" id="content-{{.ID}}">
 {{ end }}
-    <div class="section-wrapper">
-        <div class="content">
-            {{ if .HasTitle }}
-            <h1>{{.Title}}</h1>
-            {{ end }}
-            {{.Content}}
-        </div>
-        {{ if .HasSideNote }}
-        <div class="sidenote">
-            {{.SideNote}}
-        </div>
-        {{ end }}
+  <div class="section-wrapper">
+    <div class="content">
+      {{ if .HasTitle }}
+        <h1>{{.Title}}</h1>
+      {{ end }}
+      {{.Content}}
     </div>
+    {{ if .HasSideNote }}
+      <div class="sidenote">
+        {{.SideNote}}
+      </div>
+    {{ end }}
+  </div>
 </section>

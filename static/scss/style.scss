@@ -115,76 +115,6 @@ h3, h4, h5, h6 {
     }
 }
 
-#sidebar {
-    width: var(--owl-sidebar-width);
-    height: 100vh;
-    box-shadow: -1px 0 0 0 var(--gray100) inset;
-    overflow-y: auto;
-    overflow-x: hidden;
-
-    .header {
-        padding: 15px;
-        box-shadow: 0 -1px 0 0 var(--gray100) inset;
-        .version-and-toggle {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-    }
-
-    .search {
-        background: var(--search-background-color);
-        border-radius: 8px;
-        box-shadow: 0 0 0 1px hsla(0, 0%, 100%, .15);
-        padding: 8px;
-        display: flex;
-        align-items: center;
-
-        &:hover {
-            background-color: var(--gray100);
-            cursor: pointer;
-        }
-
-        span {
-            &.label {
-                flex: 1;
-                margin: 0 8px;
-                color: var(--gray500);
-            }
-            &.keyboard {
-                padding: 2px 6px;
-                background-color: var(--gray100);
-                border-radius: 3px;
-                color: var(--gray800);
-                line-height: 10px;
-                display: block;
-                height: 17px;
-            }
-        }
-
-        svg {
-            margin-right: 5px;
-            circle, path {
-                stroke: var(--search-color);
-            }
-        }
-    }
-    @media (max-width: $breakpoint-tablet) {
-        display: none;
-    }
-}
-
-.version {
-    display: flex;
-    align-items: center;
-    color: var(--gray800);
-
-    small {
-        margin-top: 5px;
-    }
-}
-
 #content {
     position: absolute;
     top: 0;
@@ -700,38 +630,125 @@ blockquote {
     }
 }
 
-.sidebar-mobile {
-    position: relative;
-    z-index: 1;
-
-    margin-right: 48px;
+#sidebar {
+    width: var(--owl-sidebar-width);
+    height: 100vh;
+    box-shadow: -1px 0 0 0 var(--gray100) inset;
+    overflow-y: auto;
+    overflow-x: hidden;
 
     .header {
-        display: none;
-        z-index: 1;
-        position: fixed;
-        width: 100vw;
-        align-items: center;
-        padding: 8px;
-        background-color: var(--owl-backgroundColor);
-        border-bottom: 1px solid var(--gray100);
+        padding: 15px;
+        box-shadow: 0 -1px 0 0 var(--gray100) inset;
+
+        .version-and-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+
+            .version {
+                display: flex;
+                align-items: center;
+                color: var(--gray800);
+
+                small {
+                    margin-top: 5px;
+                }
+            }
+
+            @media (max-width: $breakpoint-tablet) {
+                color: var(--gray800);
+                width: 100%;
+                padding: 0 4px;
+                margin: 0;
+            }
+        }
+
+        @media (max-width: $breakpoint-tablet) {
+            display: flex;
+            z-index: 1;
+            position: fixed;
+            width: 100vw;
+            align-items: center;
+            padding: 8px;
+            background-color: var(--owl-backgroundColor);
+            border-bottom: 1px solid var(--gray100);
+        }
     }
 
     .overlay {
         display: none;
-        position: absolute;
+        position: fixed;
         width: 100vw;
         height: 100vh;
         background-color: black;
         opacity: 0.4;
+
+        @media (max-width: $breakpoint-tablet) {
+            display: none;
+        }
     }
 
-    .wrapper {
+    .search {
+        background: var(--search-background-color);
+        border-radius: 8px;
+        box-shadow: 0 0 0 1px hsla(0, 0%, 100%, .15);
+        padding: 8px;
+        display: flex;
+        align-items: center;
+
+        &:hover {
+            background-color: var(--gray100);
+            cursor: pointer;
+        }
+
+        span {
+            &.label {
+                flex: 1;
+                margin: 0 8px;
+                color: var(--gray500);
+            }
+            &.keyboard {
+                padding: 2px 6px;
+                background-color: var(--gray100);
+                border-radius: 3px;
+                color: var(--gray800);
+                line-height: 10px;
+                display: block;
+                height: 17px;
+            }
+        }
+
+        svg {
+            margin-right: 5px;
+            circle, path {
+                stroke: var(--search-color);
+            }
+        }
+
+        @media (max-width: $breakpoint-tablet) {
+            display: none;
+        }
+    }
+
+    .desktop-menu-content {
+        display: block;
+
+        @media (max-width: $breakpoint-tablet) {
+            display: none;
+        }
+    }
+
+    .mobile-menu-content {
+        display: none;
         position: fixed;
         top: 51px;
         left: -280px;
         z-index: 1;
         width: 280px;
+        max-height: 375px;
+        overflow: scroll;
         padding: 12px 0;
         flex-direction: column;
         background-color: var(--owl-backgroundColor);
@@ -750,20 +767,19 @@ blockquote {
                 height: 40px;
                 line-height: 20px;
             }
-
-            .sidebar-group-wrapper a {
-                padding-left: 30px;
-            }
         }
 
+        @media (max-width: $breakpoint-tablet) {
+            display: block;
+        }
     }
 
-    .menu-active {
-        display: block;
-        left: 0
+    .sidebar-group-wrapper a {
+        padding-left: 30px;
     }
 
     .burger-button {
+        display: none;
         color: var(--gray800);
         font-size: 18px;
         background: none;
@@ -772,30 +788,38 @@ blockquote {
         &:active {
             opacity: 0.4;
         }
+
+        @media (max-width: $breakpoint-tablet) {
+            display: block;
+        }
     }
 
-    @media (max-width: $breakpoint-tablet) {
-        .overlay {
-            display: none;
-        }
+    .menu-active {
+        display: none;
 
-        .header {
-            display: flex;
+        @media (max-width: $breakpoint-tablet) {
+            display: block;
+            left: 0
         }
+    }
 
-        .open  {
+    .open  {
+        display: none;
+
+        @media (max-width: $breakpoint-tablet) {
             display: block;
             height: 100vh;
         }
+    }
 
-        .version-and-toggle {
-            display: flex;
-            align-items: center;
-            color: var(--gray800);
-            width: 100%;
-            justify-content: space-between;
-            padding: 0 4px;
-        }
+    @media (max-width: $breakpoint-tablet) {
+        position: relative;
+        z-index: 1;
+        margin-right: 48px;
+        height: auto;
+        overflow-y: visible;
+        overflow-x: visible;
+        box-shadow: none;
     }
 }
 

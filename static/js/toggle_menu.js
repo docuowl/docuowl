@@ -1,7 +1,7 @@
 (() => {
   const button = document.querySelector('.burger-button');
-  const menuContent = document.querySelector('#mobile-menu-content');
-  const overlay = document.querySelector('.sidebar-mobile .overlay');
+  const menuContent = document.querySelector('.mobile-menu-content');
+  const overlay = document.querySelector('#sidebar .overlay');
 
   const toggleMenu = () => {
     menuContent.classList.toggle('menu-active');

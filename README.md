@@ -14,6 +14,10 @@ Looking for a demo? A simple demo is available at [https://docuowl.github.io/dem
 <center><img width="1676" alt="image" src="https://user-images.githubusercontent.com/77198/113536836-69b0b000-95ad-11eb-9003-f3bf6a2e3f9f.png">
 </center>
 
+## Installing
+Refer to the [releases](https://github.com/docuowl/docuowl/releases) page to get
+the latest version.
+
 ## Documentation Organization
 Docuowl takes a directory as input. The directory is expected to have one
 directory for each section or group. Each group may have subsections, which by
@@ -135,9 +139,14 @@ Listening on 127.0.0.1:8000
 Then open your browser and point to 127.0.0.1:8000. The page will be reloaded
 each time a file changes in the `input` directory.
 
+### Building
+In order to locally build, use the provided `Makefile`. Steps consist of running
+`cmd/static-generator/main.go`, responsible for compiling static files required
+by `static/static.go`, and running `go build` on `cmd/docuowl/main.go`.
+
 ## TODO
 - [ ] Full-text Search
-- [ ] Improve CSS
+- [ ] Add tests
 
 ## License
 

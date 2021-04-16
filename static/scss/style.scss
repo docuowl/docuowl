@@ -754,7 +754,7 @@ blockquote {
         left: -280px;
         z-index: 1;
         width: 280px;
-        max-height: 375px;
+        height: calc(100vh - 51px);
         overflow: scroll;
         padding: 12px 0;
         flex-direction: column;

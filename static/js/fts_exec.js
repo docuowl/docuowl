@@ -56,10 +56,13 @@ const debounce = (n,t,u) => {var e;return function(){var i=this,o=arguments,a=u&
                 .trim();
 
             const allIndexes = terms
-                .map(t => containerText.includes(t) ? { 
-                    start: Math.max(0, idx - 100),
-                    end: idx + 100
-                } : false)
+                .map(t => {
+                  const idx = containerText.indexOf(t);
+                  if (idx === -1) {
+                    return false;
+                  }
+                  return { start: Math.max(0, idx - 100), end: idx + 100 };
+                })
                 .filter(Boolean);
 
             if (allIndexes.length === 0) {

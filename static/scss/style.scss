@@ -1,5 +1,7 @@
 @import "reset";
 
+$breakpoint-tablet: 768px;
+
 :root {
     --owl-fontSet--latin: -apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Helvetica Neue","Ubuntu";
     --owl-fontSet--monospace: "Menlo","Consolas";
@@ -30,8 +32,6 @@ html, body {
     font-weight: 400;
     color: #4f566b;
     background-color: var(--owl-backgroundColor);
-    height: 100vh;
-    width: 100vw;
     overflow-x: hidden;
 }
 
@@ -115,73 +115,6 @@ h3, h4, h5, h6 {
     }
 }
 
-#sidebar {
-    width: var(--owl-sidebar-width);
-    height: 100vh;
-    box-shadow: -1px 0 0 0 var(--gray100) inset;
-    overflow-y: auto;
-    overflow-x: hidden;
-
-    .header {
-        padding: 15px;
-        box-shadow: 0 -1px 0 0 var(--gray100) inset;
-        .version-and-toggle {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-
-            .version {
-                display: flex;
-                align-items: center;
-
-                small {
-                    margin-top: 5px;
-                }
-            }
-        }
-    }
-
-    .search {
-        background: var(--search-background-color);
-        border-radius: 8px;
-        box-shadow: 0 0 0 1px hsla(0, 0%, 100%, .15);
-        padding: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        &:hover {
-            background-color: var(--gray100);
-            cursor: pointer;
-        }
-
-        span {
-            &.label {
-                flex: 1;
-                margin: 0 8px;
-                color: var(--gray500);
-            }
-            &.keyboard {
-                padding: 2px 6px;
-                background-color: var(--gray100);
-                border-radius: 3px;
-                color: var(--gray800);
-                line-height: 10px;
-                display: block;
-                height: 17px;
-            }
-        }
-
-        svg {
-            margin-right: 5px;
-            circle, path {
-                stroke: var(--search-color);
-            }
-        }
-    }
-}
-
 #content {
     position: absolute;
     top: 0;
@@ -192,7 +125,13 @@ h3, h4, h5, h6 {
     -webkit-overflow-scrolling: touch;
     outline: none !important;
     overflow-x: hidden;
-    overflow-y: scroll
+    overflow-y: scroll;
+
+    @media (max-width: $breakpoint-tablet) {
+        padding-top: 51px;
+        position: relative;
+        left: 0px;
+    }
 }
 
 h1 {
@@ -208,6 +147,16 @@ h1 {
     flex-wrap: wrap;
 }
 
+.anchor-ref {
+    display: block;
+    margin-top: -41px;
+    padding-top: 41px;
+    @media (max-width: $breakpoint-tablet) {
+        margin-top: -82px;
+        padding-top: 82px;
+    }
+}
+
 section.section {
     border-bottom: 1px solid var(--gray100);
     display: flex;
@@ -220,6 +169,10 @@ section.section {
         padding: 5vw;
         width: 100%;
         justify-content: space-between;
+
+        @media (max-width: $breakpoint-tablet) {
+            flex-direction: column;
+        }
     }
 
     .content {
@@ -237,6 +190,12 @@ section.section {
 
             pre span {
                 margin: 0;
+            }
+        }
+
+        @media (max-width: $breakpoint-tablet) {
+            ol {
+                margin-left: 24px;
             }
         }
     }
@@ -315,7 +274,20 @@ section.section {
                     padding: 12px;
                 }
             }
+
+            @media (max-width: $breakpoint-tablet) {
+                min-width: 100%;
+            }
         }
+
+        @media (max-width: $breakpoint-tablet) {
+            min-width: 100%;
+            padding-top: 0;
+        }
+    }
+
+    @media (max-width: $breakpoint-tablet) {
+        flex-direction: column;
     }
 }
 
@@ -504,7 +476,7 @@ pre {
 
     .content {
         > h5 {
-            margin-top: 8px!important;
+            margin-top: 12px!important;
             border: 1px solid var(--gray100);
             border-radius: 8px 8px 0 0;
             padding-left: 10px;
@@ -662,6 +634,199 @@ blockquote {
                 stroke: var(--gray200);
             }
         }
+    }
+}
+
+#sidebar {
+    width: var(--owl-sidebar-width);
+    height: 100vh;
+    box-shadow: -1px 0 0 0 var(--gray100) inset;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    .header {
+        padding: 15px;
+        box-shadow: 0 -1px 0 0 var(--gray100) inset;
+
+        .version-and-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+
+            .version {
+                display: flex;
+                align-items: center;
+                color: var(--gray800);
+
+                small {
+                    margin-top: 5px;
+                }
+            }
+
+            @media (max-width: $breakpoint-tablet) {
+                color: var(--gray800);
+                width: 100%;
+                padding: 0 4px;
+                margin: 0;
+            }
+        }
+
+        @media (max-width: $breakpoint-tablet) {
+            display: flex;
+            z-index: 1;
+            position: fixed;
+            width: 100vw;
+            align-items: center;
+            padding: 8px;
+            background-color: var(--owl-backgroundColor);
+            border-bottom: 1px solid var(--gray100);
+        }
+    }
+
+    .overlay {
+        display: none;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        background-color: black;
+        opacity: 0.4;
+
+        @media (max-width: $breakpoint-tablet) {
+            display: none;
+        }
+    }
+
+    .search {
+        background: var(--search-background-color);
+        border-radius: 8px;
+        box-shadow: 0 0 0 1px hsla(0, 0%, 100%, .15);
+        padding: 8px;
+        display: flex;
+        align-items: center;
+
+        &:hover {
+            background-color: var(--gray100);
+            cursor: pointer;
+        }
+
+        span {
+            &.label {
+                flex: 1;
+                margin: 0 8px;
+                color: var(--gray500);
+            }
+            &.keyboard {
+                padding: 2px 6px;
+                background-color: var(--gray100);
+                border-radius: 3px;
+                color: var(--gray800);
+                line-height: 10px;
+                display: block;
+                height: 17px;
+            }
+        }
+
+        svg {
+            margin-right: 5px;
+            circle, path {
+                stroke: var(--search-color);
+            }
+        }
+
+        @media (max-width: $breakpoint-tablet) {
+            display: none;
+        }
+    }
+
+    .desktop-menu-content {
+        display: block;
+
+        @media (max-width: $breakpoint-tablet) {
+            display: none;
+        }
+    }
+
+    .mobile-menu-content {
+        display: none;
+        position: fixed;
+        top: 51px;
+        left: -280px;
+        z-index: 1;
+        width: 280px;
+        height: calc(100vh - 51px);
+        overflow: scroll;
+        padding: 12px 0;
+        flex-direction: column;
+        background-color: var(--owl-backgroundColor);
+        transition: left .4s ease-out;
+
+        .content {
+            width: 100%;
+            height: 100%;
+            background-color: var(--owl-backgroundColor);
+
+            .toc {
+                margin-top: 0;
+            }
+
+            .toc a {
+                height: 40px;
+                line-height: 20px;
+            }
+        }
+
+        @media (max-width: $breakpoint-tablet) {
+            display: block;
+        }
+    }
+
+    .sidebar-group-wrapper a {
+        padding-left: 30px;
+    }
+
+    .burger-button {
+        display: none;
+        color: var(--gray800);
+        font-size: 18px;
+        background: none;
+        border: none;
+
+        &:active {
+            opacity: 0.4;
+        }
+
+        @media (max-width: $breakpoint-tablet) {
+            display: block;
+        }
+    }
+
+    .menu-active {
+        display: none;
+
+        @media (max-width: $breakpoint-tablet) {
+            display: block;
+            left: 0
+        }
+    }
+
+    .open  {
+        display: none;
+
+        @media (max-width: $breakpoint-tablet) {
+            display: block;
+            height: 100vh;
+        }
+    }
+
+    @media (max-width: $breakpoint-tablet) {
+        position: relative;
+        z-index: 1;
+        margin-right: 48px;
+        height: auto;
+        overflow-y: visible;
+        overflow-x: visible;
+        box-shadow: none;
     }
 }
 

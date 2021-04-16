@@ -70,8 +70,9 @@ func MakeSidebar(tree []fs.Entity, version string, noFTS bool) string {
 		TOC           string
 		Version       string
 		ThemeSelector string
+		ToggleMenu 		string
 		NoFTS         bool
-	}{TOC, version, static.ThemeSelector, noFTS})
+	}{TOC, version, static.ThemeSelector, static.ToggleMenu, noFTS})
 	if err != nil {
 		panic(err)
 	}

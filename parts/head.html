@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAAsCAAAAADZMx6kAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEjSURBVDjL3ZVBbcQwEEUXyEcwCIwgCDYIjCAIzKAIQiAMjCAmkDAIAV/2tNLrIc22u8kmXqmV2s7BGtlPlu3/Z3xSeZz+Kgvr7DlrL7D1nPgStp+TVMISz1IdKWEvAHAt2vcWv4HtO1fMAu2BFj1ciY2pbuHtwA8RRlvEq/ZZG6fFFC2D7fvM+dvCuD7y2pMw9F6qwBewQG8KZDv0ulwz0Ulpcd6KHRf/SpLLeFmm22YDOXxON2RTlYnnzdpsIbc3bSO95O8N8qWO/QjkMF/IMkFyXdpmpaoDLl01K5fdfn+weAWGYB+n2O8lnilDbmTTo39WrCPLJ/CqYGjOTlL9rEeBpMAgNdPTd7gTcB59TCOQStijPvkT7EOBpu9i/+k/VBDvUOLeyIV7YagAAAAASUVORK5CYII=" rel="icon" type="image/x-icon" />
-    {{ if not .NoFTS }}
+  <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAAsCAAAAADZMx6kAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEjSURBVDjL3ZVBbcQwEEUXyEcwCIwgCDYIjCAIzKAIQiAMjCAmkDAIAV/2tNLrIc22u8kmXqmV2s7BGtlPlu3/Z3xSeZz+Kgvr7DlrL7D1nPgStp+TVMISz1IdKWEvAHAt2vcWv4HtO1fMAu2BFj1ciY2pbuHtwA8RRlvEq/ZZG6fFFC2D7fvM+dvCuD7y2pMw9F6qwBewQG8KZDv0ulwz0Ulpcd6KHRf/SpLLeFmm22YDOXxON2RTlYnnzdpsIbc3bSO95O8N8qWO/QjkMF/IMkFyXdpmpaoDLl01K5fdfn+weAWGYB+n2O8lnilDbmTTo39WrCPLJ/CqYGjOTlL9rEeBpMAgNdPTd7gTcB59TCOQStijPvkT7EOBpu9i/+k/VBDvUOLeyIV7YagAAAAASUVORK5CYII=" rel="icon" type="image/x-icon" />
+  {{ if not .NoFTS }}
     <meta name="owl-fts-index" content="{{.Index}}" />
     <script type="module">
-        {{ .FTSSource }}
+      {{ .FTSSource }}
     </script>
-    {{ end }}
-    <meta charset="utf-8" />
-    <meta name="generator" content="Docuowl (https://github.com/docuowl/docuowl)" />
-    <style>
-        {{ .CSS }}
-    </style>
-    <title>Docuowl</title>
+  {{ end }}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Docuowl (https://github.com/docuowl/docuowl)" />
+  <style>
+    {{ .CSS }}
+  </style>
+  <title>Docuowl</title>
 </head>
 <body>

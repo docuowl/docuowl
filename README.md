@@ -11,8 +11,7 @@ to use their layout, so here's a big thank you to them! ♥️
 ## Demo
 Looking for a demo? A simple demo is available at [https://docuowl.github.io/demo/](https://docuowl.github.io/demo/)!
 
-<center><img width="1676" alt="image" src="https://user-images.githubusercontent.com/77198/113536836-69b0b000-95ad-11eb-9003-f3bf6a2e3f9f.png">
-</center>
+<center><img width="1316" alt="Docuowl Screenshot" src="https://user-images.githubusercontent.com/77198/115077959-49e68980-9ed5-11eb-9949-acd47a2e0cb6.png"></center>
 
 ## Installing
 Refer to the [releases](https://github.com/docuowl/docuowl/releases) page to get

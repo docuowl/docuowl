@@ -52,7 +52,7 @@ func makeTOC(tree []fs.Entity) string {
 			list = append(list, fmt.Sprintf(`<details id="anchor-%s"><summary>%s</summary><div class="sidebar-group-wrapper">%s</div></details>`, v.CompoundID(), v.Meta().Title, makeTOC(v.Children)))
 		case *fs.Section:
 			compID := v.CompoundID()
-			list = append(list, fmt.Sprintf(`<a href="#content-%s" id="anchor-%s">%s</a>`, compID, compID, v.Meta().Title))
+			list = append(list, fmt.Sprintf(`<a href="#%s" id="anchor-%s">%s</a>`, compID, compID, v.Meta().Title))
 		}
 	}
 

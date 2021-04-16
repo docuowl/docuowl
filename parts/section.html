@@ -1,12 +1,12 @@
 {{ if eq .ID "" }}
 <section class="section">
 {{ else }}
-<section class="section" id="content-{{.ID}}">
+<section class="section">
 {{ end }}
   <div class="section-wrapper">
     <div class="content">
       {{ if .HasTitle }}
-        <h1>{{.Title}}</h1>
+        <h1><span class="anchor-ref" id="content-{{.ID}}"></span>{{.Title}}</h1>
       {{ end }}
       {{.Content}}
     </div>

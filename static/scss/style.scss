@@ -127,11 +127,8 @@ h3, h4, h5, h6 {
     overflow-x: hidden;
     overflow-y: scroll;
 
-    #content-introduction {
-        margin-top: 51px;
-    }
-
     @media (max-width: $breakpoint-tablet) {
+        padding-top: 51px;
         position: relative;
         left: 0px;
     }
@@ -148,6 +145,16 @@ h1 {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+}
+
+.anchor-ref {
+    display: block;
+    margin-top: -41px;
+    padding-top: 41px;
+    @media (max-width: $breakpoint-tablet) {
+        margin-top: -82px;
+        padding-top: 82px;
+    }
 }
 
 section.section {

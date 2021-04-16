@@ -2,13 +2,14 @@ before:
   hooks:
     - go mod tidy
     - go generate ./...
+    - go run ./cmd/static-generator/main.go
 builds:
   - env:
       - CGO_ENABLED=0
     goos:
       - linux
       - darwin
-    main: cmd/main.go
+    main: cmd/docuowl/main.go
 archives:
   - replacements:
       darwin: Darwin

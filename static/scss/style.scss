@@ -105,6 +105,11 @@ h3, h4, h5, h6 {
     justify-content: space-between;
 }
 
+section img {
+    width: 100%;
+    height: auto;
+}
+
 .logo {
     g[stroke='#fff'] {
         stroke: var(--logo-color);

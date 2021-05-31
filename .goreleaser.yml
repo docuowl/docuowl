@@ -33,6 +33,7 @@ brews:
     commit_author:
       name: Victor Gama
       email: hey@vito.io
+    folder: Formula
     license: "MIT"
     homepage: "https://github.com/docuowl/docuowl"
     description: "A documentation generator"

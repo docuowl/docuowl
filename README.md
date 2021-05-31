@@ -14,6 +14,16 @@ Looking for a demo? A simple demo is available at [https://docuowl.github.io/dem
 <center><img width="1316" alt="Docuowl Screenshot" src="https://user-images.githubusercontent.com/77198/115077959-49e68980-9ed5-11eb-9949-acd47a2e0cb6.png"></center>
 
 ## Installing
+
+### Brew
+
+To install Docuowl using [Homebrew](https://brew.sh), execute the following command:
+
+```bash
+brew install docuowl/tap/docuowl
+```
+
+### Manually
 Refer to the [releases](https://github.com/docuowl/docuowl/releases) page to get
 the latest version.
 

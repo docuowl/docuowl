@@ -26,3 +26,17 @@ changelog:
     exclude:
       - '^docs:'
       - '^test:'
+brews:
+  - tap:
+      owner: docuowl
+      name: homebrew-tap
+    commit_author:
+      name: Victor Gama
+      email: hey@vito.io
+    license: "MIT"
+    homepage: "https://github.com/docuowl/docuowl"
+    description: "A documentation generator"
+    conflicts:
+      - docuowl
+    test: |
+        system "#{bin}/docuowl -v"

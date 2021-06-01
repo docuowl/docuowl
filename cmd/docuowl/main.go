@@ -1,80 +1,103 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"log"
 	"os"
 	"path/filepath"
 
+	"github.com/urfave/cli/v2"
+
 	"github.com/heyvito/docuowl/fs"
-	fts2 "github.com/heyvito/docuowl/fts"
+	"github.com/heyvito/docuowl/fts"
 	"github.com/heyvito/docuowl/parts"
 	"github.com/heyvito/docuowl/static"
-	watch2 "github.com/heyvito/docuowl/watch"
+	"github.com/heyvito/docuowl/watch"
 )
 
 const version = "0.2.3"
 
 func main() {
-	var (
-		watch  bool
-		noFTS  bool
-		port   int
-		lang   string
-		input  string
-		output string
-	)
-	flag.BoolVar(&watch, "watch", false, "Serves OUTPUT in PORT, and automatically reloads the page when changes are detected.")
-	flag.IntVar(&port, "port", 8000, "When --watch is used, defines in which port to serve output")
-	flag.StringVar(&lang, "lang", "en", "Language in which your documentation is written")
-	flag.StringVar(&input, "input", "", "Where to look for input files")
-	flag.StringVar(&output, "output", "", "Where to output compiled documentation")
-	flag.BoolVar(&noFTS, "no-fts", false, "Disables FTS facilities")
-	flag.Parse()
 
-	log.Printf("Docuowl v%s", version)
+	app := cli.App{
+		Flags: []cli.Flag{
+			&cli.BoolFlag{
+				Name:  "watch",
+				Usage: "Serves OUTPUT in PORT, and automatically reloads the page when changes are detected.",
+				Value: false,
+			},
+			&cli.IntFlag{
+				Name:  "port",
+				Usage: "When --watch is used, defines in which port to serve output",
+				Value: 8000,
+			},
+			&cli.StringFlag{
+				Name:  "lang",
+				Usage: "Language in which your documentation is written",
+				Value: "en",
+			},
+			&cli.StringFlag{
+				Name:     "input",
+				Usage:    "Where to look for input files",
+				Value:    "",
+				Required: true,
+			},
+			&cli.StringFlag{
+				Name:     "output",
+				Usage:    "Where to output compiled documentation",
+				Value:    "",
+				Required: true,
+			},
+			&cli.BoolFlag{
+				Name:  "no-fts",
+				Usage: "Disables FTS facilities",
+				Value: false,
+			},
+		},
+		Action: func(c *cli.Context) error {
+			var (
+				doWatch = c.Bool("watch")
+				noFTS   = c.Bool("no-fts")
+				port    = c.Int("port")
+				lang    = c.String("lang")
+				input   = c.String("input")
+				output  = c.String("output")
+			)
+			inputPath, err := filepath.Abs(input)
+			if err != nil {
+				log.Fatalf("Error processing input path %s: %s", input, err)
+			}
 
-	if input == "" {
-		_, _ = fmt.Fprintln(os.Stderr, "ERROR: -input is required.")
-		flag.PrintDefaults()
-		os.Exit(1)
+			outputPath, err := filepath.Abs(output)
+			if err != nil {
+				log.Fatalf("Error processing output path %s: %s", input, err)
+			}
+
+			if doWatch {
+				if err = render(lang, inputPath, outputPath, noFTS); err != nil {
+					log.Printf("Error executing initial render: %s", err)
+					log.Println("Will retry on next update")
+				}
+				w := watch.New(inputPath, outputPath, port, func() error {
+					return render(lang, inputPath, outputPath, noFTS)
+				})
+				log.Printf("Listening on 127.0.0.1:%d", port)
+				if err = w.Run(); err != nil {
+					log.Fatalf("%s", err)
+				}
+			} else {
+				log.Println("Rendering contents...")
+				err := render(lang, inputPath, outputPath, noFTS)
+				if err != nil {
+					log.Fatalf("%s", err)
+				}
+			}
+			return nil
+		},
 	}
-
-	if output == "" {
-		_, _ = fmt.Fprintln(os.Stderr, "ERROR: -output is required.")
-		flag.PrintDefaults()
-		os.Exit(1)
-	}
-
-	inputPath, err := filepath.Abs(input)
+	err := app.Run(os.Args)
 	if err != nil {
-		log.Fatalf("Error processing input path %s: %s", input, err)
-	}
-
-	outputPath, err := filepath.Abs(output)
-	if err != nil {
-		log.Fatalf("Error processing output path %s: %s", input, err)
-	}
-
-	if watch {
-		if err = render(lang, inputPath, outputPath, noFTS); err != nil {
-			log.Printf("Error executing initial render: %s", err)
-			log.Println("Will retry on next update")
-		}
-		w := watch2.New(inputPath, outputPath, port, func() error {
-			return render(lang, inputPath, outputPath, noFTS)
-		})
-		log.Printf("Listening on 127.0.0.1:%d", port)
-		if err = w.Run(); err != nil {
-			log.Fatalf("%s", err)
-		}
-	} else {
-		log.Println("Rendering contents...")
-		err := render(lang, inputPath, outputPath, noFTS)
-		if err != nil {
-			log.Fatalf("%s", err)
-		}
+		log.Fatal(err)
 	}
 }
 
@@ -84,11 +107,11 @@ func render(lang, input, output string, noFTS bool) error {
 		return fmt.Errorf("error scanning %s: %w", input, err)
 	}
 
-	fts := fts2.New(lang)
+	ftsInst := fts.New(lang)
 
 	sidebar := parts.MakeSidebar(tree, version, noFTS)
-	rendered := parts.RenderItems(tree, fts)
-	index, err := fts.Serialize()
+	rendered := parts.RenderItems(tree, ftsInst)
+	index, err := ftsInst.Serialize()
 	if err != nil {
 		return fmt.Errorf("error serialising FTS index: %w", err)
 	}
